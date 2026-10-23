@@ -1,0 +1,2 @@
+@media(max-width:1000px){.app{grid-template-columns:1fr}main{order:-1}}
+@media(max-width:600px){header{flex-wrap:wrap}.hb{width:100%}.hb button{flex:1}.grid2{grid-template-columns:1fr}.app{padding:8px}}

@@ -1,0 +1,41 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ChartCraft Studio</title><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/responsive.css"></head><body>
+<header><div class="logo">◐ ChartCraft <b>Studio</b></div><input id="pname" aria-label="Project name">
+<div class="hb"><button id="new">New</button><button id="openbtn">Projects</button><button id="save">Save</button><button class="pri" id="exportbtn">Export</button></div></header>
+<div class="app"><aside id="sidebar">
+<section><h3>Chart type</h3><select id="c_type"></select> <select id="samples" title="Sample data"></select></section>
+<section><h3>Data <span class="ub"><button id="undo" title="Undo (Ctrl+Z)">↶</button><button id="redo" title="Redo (Ctrl+Shift+Z)">↷</button></span></h3>
+<div class="scroll" id="editor"></div><div class="row"><button id="addrow">+ Row</button><button id="addser">+ Series</button><button id="clear" class="danger">Clear</button></div>
+<details><summary>Paste or import</summary><textarea id="pastebox" placeholder="Paste cells from Excel / Google Sheets, or CSV text"></textarea>
+<div class="row"><button id="paste">Use pasted data</button><label class="btn">Import CSV<input type="file" id="csvfile" accept=".csv,.txt,text/csv" hidden></label></div></details></section>
+<section><h3>Design</h3><div class="grid2">
+<label>Title<input id="c_title"></label><label>Subtitle<input id="c_sub"></label><label>X-axis title<input id="c_xt"></label><label>Y-axis title<input id="c_yt"></label>
+<label>Palette<select id="c_palette"></select></label><label>Theme<select id="c_theme"><option>light</option><option>dark</option></select></label>
+<label>Legend<select id="c_legend"><option>bottom</option><option>top</option><option>left</option><option>right</option><option value="none">hidden</option></select></label>
+<label>Number format<select id="c_fmt"><option value="number">Number</option><option value="currency">Currency</option><option value="percent">Percent</option></select></label>
+<label>Decimals<input type="number" id="c_dec" min="0" max="6"></label><label>Font size<input type="number" id="c_size" min="8" max="30"></label>
+<label>Font<select id="c_font"><option value="Inter, Arial, sans-serif">Sans</option><option value="Georgia, serif">Serif</option><option value="'Courier New', monospace">Mono</option></select></label>
+<label>Aspect ratio<select id="c_ratio"><option value="1">1:1</option><option value="1.33">4:3</option><option value="1.8">16:9</option><option value="2.4">Wide</option></select></label>
+<label>Line/border<input type="number" id="c_border" min="0" max="10"></label><label>Point size<input type="number" id="c_point" min="0" max="12"></label>
+<label>Doughnut hole %<input type="range" id="c_hole" min="20" max="85"></label></div>
+<div class="checks"><label><input type="checkbox" id="c_grid"> Grid</label><label><input type="checkbox" id="c_dlabels"> Data labels</label><label><input type="checkbox" id="c_curve"> Curved lines</label><label><input type="checkbox" id="c_anim"> Animation</label></div>
+<h4>Colors</h4><div id="colors"></div></section>
+<section id="projects"><h3>Saved projects</h3><ul id="plist"></ul><div class="row"><button id="expproj">Export JSON</button><label class="btn">Import JSON<input type="file" id="impproj" accept=".json" hidden></label></div>
+<p class="hint">Projects are saved in this browser (LocalStorage) and do not transfer to other devices. Use Export JSON to move them.</p></section></aside>
+<main><div class="card"><div class="cw"><canvas id="chart" role="img" aria-label="Chart preview"></canvas></div>
+<div class="row"><button id="copyimg">Copy image</button><button id="xcsv">Data CSV</button><button id="xjson">Config JSON</button><button id="print">Print</button><label><input type="checkbox" id="showtable"> Show data table</label></div></div>
+<div class="card"><h3>Summary statistics</h3><ul id="stats"></ul><div id="dtable"></div></div></main></div>
+<dialog id="dlg"><h2>Export</h2><div class="grid2">
+<label>Format<select id="xfmt"><option value="png">PNG</option><option value="jpg">JPG</option><option value="pdf">PDF</option></select></label>
+<label>Resolution<select id="xscale"><option value="1">1×</option><option value="2" selected>2×</option><option value="3">3×</option><option value="4">4×</option></select></label>
+<label>Width px<input type="number" id="xw" value="1200"></label><label>Height px<input type="number" id="xh" value="700"></label>
+<label>Background<select id="xbg"><option value="white">White (reports)</option><option value="theme">Chart theme</option><option value="transparent">Transparent (PNG)</option></select></label>
+<label id="xqrow" hidden>JPG quality %<input type="number" id="xq" value="92" min="30" max="100"></label>
+<label>Paper<select id="xpaper"><option>A4</option><option>A3</option><option>Letter</option><option>Custom</option></select></label>
+<label>Orientation<select id="xori"><option value="landscape">Landscape</option><option value="portrait">Portrait</option></select></label>
+<span id="xcustom" hidden class="grid2"><label>Width mm<input type="number" id="xpw" value="210"></label><label>Height mm<input type="number" id="xph" value="297"></label></span></div>
+<div class="checks"><label><input type="checkbox" id="xhead" checked> Title and date (PDF)</label><label><input type="checkbox" id="xstats" checked> Statistics (PDF)</label><label><input type="checkbox" id="xtable"> Data table (PDF)</label></div>
+<div id="xprev"></div><div class="row"><button id="xadd">Add to PDF report</button><button id="xqclear">Clear report</button><span class="sp"></span><button id="xclose">Close</button><button class="pri" id="xgo">Download</button></div></dialog>
+<div id="toast" role="status"></div>
+<script src="js/vendor/chart.umd.js"></script><script src="js/vendor/jspdf.umd.min.js"></script>
+<script src="js/utils.js"></script><script src="js/calculations.js"></script><script src="js/storage.js"></script><script src="js/chart-manager.js"></script><script src="js/data-editor.js"></script><script src="js/export-manager.js"></script><script src="js/app.js"></script></body></html>
